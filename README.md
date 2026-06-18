@@ -2,7 +2,7 @@
 
 Este repositorio aloja la página de inicio pública y el sitio de documentación del proyecto **Kastor Vault**.
 
-* **Sitio Web en Vivo:** [https://<tu-usuario>.github.io/<tu-nombre-de-repo>](https://<tu-usuario>.github.io/<tu-nombre-de-repo>)
+* **Sitio Web en Vivo:** [https://www.netbug94.com/KASTOR_PAGE/](https://www.netbug94.com/KASTOR_PAGE/)
 
 ---
 
