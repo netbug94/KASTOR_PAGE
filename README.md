@@ -1,31 +1,29 @@
-# Kastor Vault - Project Homepage / Página del Proyecto
+# Kastor Vault - Página del Proyecto
 
-This repository hosts the public-facing landing page and documentation website for the **Kastor Vault** project. It is localized in Spanish (for Mexican users) and English.
+Este repositorio aloja la página de inicio pública y el sitio de documentación del proyecto **Kastor Vault**.
 
-* **Live Landing Page:** [https://<your-username>.github.io/<your-repo-name>](https://<your-username>.github.io/<your-repo-name>)
-
----
-
-## About Kastor Vault / Acerca de Kastor Vault
-
-Kastor Vault is a secure, decentralized connection registry and parameter storage solution inspired by nature's finest engineer, the beaver (Kastor/Castor). It is built on a **Zero-Knowledge Architecture**, ensuring that connection configurations, API endpoints, and credential keys are encrypted client-side and never exposed to the server in plaintext.
-
-Kastor Vault es una solución segura de almacenamiento de credenciales y parámetros de conexión inspirada en el ingeniero más meticuloso de la naturaleza: el castor. Está construido sobre una **arquitectura de Zero-Knowledge** que garantiza que los datos se cifren del lado del cliente y nunca se expongan al servidor.
-
-### Key Architectural Pillars / Pilares Clave:
-* **Client-Side Cryptography (Cifrado Local):** Master key derivation using PBKDF2-HMAC-SHA256 with 600,000 iterations.
-* **Payload Protection (Protección de Datos):** Client-side local encryption of connection slots using AES-256-GCM.
-* **Cross-Platform Compatibility (Multiplataforma):** Unified security parameters shared seamlessly between the administration panel, user portal, and native mobile clients (`Flumen Mobile`).
+* **Sitio Web en Vivo:** [https://<tu-usuario>.github.io/<tu-nombre-de-repo>](https://<tu-usuario>.github.io/<tu-nombre-de-repo>)
 
 ---
 
-## Private Project Notice
+## Acerca de Kastor Vault
+
+Kastor Vault es una solución segura y descentralizada para el registro de conexiones y el almacenamiento de parámetros, inspirada en el ingeniero más meticuloso de la naturaleza: el castor (Kastor). El sistema está construido bajo una **Arquitectura de Zero-Knowledge** (Conocimiento Cero), lo que garantiza que las credenciales de conexión, llaves y endpoints de las API se cifren del lado del cliente y nunca se expongan al servidor en texto plano.
+
+### Pilares Arquitectónicos:
+* **Cifrado del Lado del Cliente:** Derivación de la llave maestra local mediante el algoritmo PBKDF2-HMAC-SHA256 con 600,000 iteraciones.
+* **Protección de Datos:** Cifrado simétrico local de los slots de conexión utilizando AES-256-GCM.
+* **Compatibilidad Multiplataforma:** Parámetros de seguridad unificados que se comparten de manera transparente entre el panel de administración, el portal del cliente y el cliente móvil nativo (`Flumen Mobile`).
+
+---
+
+## Aviso de Proyecto Privado
 
 > [!IMPORTANT]
-> The source code repositories for the core components of Kastor Vault are closed-source:
-> * `kastor-api` (Core DB & Session routing)
-> * `kastor-portal-admin` (Administrative panel)
-> * `kastor-portal-client` (Client dashboard)
-> * `Flumen Mobile` (Native iOS/Android Kotlin Multiplatform app)
+> Los repositorios de código fuente de los componentes centrales de Kastor Vault son de código cerrado por motivos de seguridad y licenciamiento:
+> * `kastor-api` (Servicio central y base de datos)
+> * `kastor-portal-admin` (Panel de administración)
+> * `kastor-portal-client` (Portal de clientes)
+> * `Flumen Mobile` (Aplicación móvil nativa para iOS y Android escrita con Kotlin Multiplatform)
 >
-> For security and licensing reasons, these repositories are hosted privately. For access inquiries or partner program reviews, please contact the development team directly.
+> Para revisiones del programa de socios o solicitudes de acceso, por favor ponte en contacto directamente con el equipo de desarrollo.
