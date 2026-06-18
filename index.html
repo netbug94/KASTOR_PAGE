@@ -3,24 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kastor Vault - Registro de Conexiones de Zero-Knowledge</title>
-  <!-- Modern Google Fonts -->
+  <title>Kastor Vault - Bóveda Criptográfica y Represa de Conexiones</title>
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --bg-primary: #0b0e11;
-      --bg-secondary: #12181f;
-      --accent-green: #2d6a4f;
-      --accent-green-light: #40916c;
-      --accent-wood: #d4a373;
-      --accent-wood-dark: #b5835a;
-      --text-main: #f4f5f6;
-      --text-muted: #94a3b8;
-      --border-color: rgba(212, 163, 115, 0.12);
-      --success: #52b788;
+      --bg-river-deep: #060c11;
+      --bg-river-flow: #0b151e;
+      --bg-panel: rgba(16, 28, 38, 0.7);
+      
+      --accent-water: #00b4d8;
+      --accent-water-glow: rgba(0, 180, 216, 0.15);
+      --accent-wood: #a8763e;
+      --accent-wood-light: #c2935c;
+      --accent-steel: #778da9;
+      
+      --text-main: #f0f4f8;
+      --text-muted: #8da2bb;
+      --border-wood: rgba(168, 118, 62, 0.25);
+      --border-water: rgba(0, 180, 216, 0.2);
+      
+      --success: #38b000;
     }
 
     * {
@@ -31,20 +37,50 @@
 
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: var(--bg-primary);
+      background-color: var(--bg-river-deep);
       color: var(--text-main);
       line-height: 1.6;
       overflow-x: hidden;
     }
 
+    /* River Flow Background effect */
+    .river-flow-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(135deg, var(--bg-river-deep) 0%, #03070a 100%);
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    .river-stream {
+      position: fixed;
+      top: -30%;
+      left: -10%;
+      width: 120%;
+      height: 80%;
+      background: radial-gradient(ellipse at center, rgba(0, 180, 216, 0.04) 0%, transparent 60%);
+      transform: rotate(-15deg);
+      z-index: -1;
+      pointer-events: none;
+      animation: waterFlow 12s infinite alternate ease-in-out;
+    }
+
+    @keyframes waterFlow {
+      0% { transform: translateY(0) rotate(-15deg) scale(0.95); }
+      100% { transform: translateY(30px) rotate(-12deg) scale(1.05); }
+    }
+
     header {
-      padding: 20px 6%;
+      padding: 22px 6%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid var(--border-color);
-      background: rgba(11, 14, 17, 0.8);
-      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-water);
+      background: rgba(6, 12, 17, 0.85);
+      backdrop-filter: blur(20px);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -52,229 +88,248 @@
 
     .brand {
       font-family: 'Lexend', sans-serif;
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      color: var(--text-main);
+      font-size: 24px;
+      font-weight: 950;
+      letter-spacing: -1px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(168, 118, 62, 0.2), rgba(0, 180, 216, 0.15));
+      border: 1.5px solid var(--accent-wood);
+      border-radius: 12px;
+      font-size: 20px;
+      box-shadow: 0 0 15px rgba(168, 118, 62, 0.15);
     }
 
     .brand span {
-      background: linear-gradient(135deg, var(--accent-wood), var(--accent-green-light));
+      background: linear-gradient(135deg, var(--text-main) 30%, var(--accent-water) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .brand-logo {
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(212, 163, 115, 0.15);
-      border: 1.5px solid var(--accent-wood);
-      border-radius: 8px;
-      font-size: 18px;
-    }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
     .lang-btn {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
-      padding: 6px 14px;
+      background: rgba(0, 180, 216, 0.05);
+      border: 1px solid var(--border-water);
+      color: var(--accent-water);
+      padding: 7px 16px;
       font-size: 13px;
-      font-weight: 600;
-      border-radius: 6px;
+      font-weight: 700;
+      border-radius: 8px;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.25s ease;
       font-family: 'Lexend', sans-serif;
+      letter-spacing: 0.5px;
     }
 
     .lang-btn:hover {
-      background: rgba(212, 163, 115, 0.1);
-      border-color: var(--accent-wood);
+      background: var(--accent-water);
+      color: var(--bg-river-deep);
+      box-shadow: 0 0 15px rgba(0, 180, 216, 0.35);
+      transform: translateY(-1px);
     }
 
     .container {
-      max-width: 1100px;
+      max-width: 1000px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
     /* Hero Section */
     .hero {
-      padding: 90px 0 70px 0;
+      padding: 100px 0 60px 0;
       text-align: center;
       position: relative;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(212, 163, 115, 0.06) 0%, transparent 70%);
-      z-index: -1;
-      pointer-events: none;
     }
 
     .badge {
       display: inline-block;
       padding: 6px 16px;
       border-radius: 99px;
-      background: rgba(45, 106, 79, 0.15);
-      border: 1px solid rgba(45, 106, 79, 0.3);
-      color: var(--success);
-      font-size: 12px;
-      font-weight: 700;
+      background: rgba(168, 118, 62, 0.12);
+      border: 1px solid var(--border-wood);
+      color: var(--accent-wood-light);
+      font-size: 11.5px;
+      font-weight: 800;
       margin-bottom: 24px;
       text-transform: uppercase;
-      letter-spacing: 0.8px;
+      letter-spacing: 1px;
       font-family: 'Lexend', sans-serif;
     }
 
     h1 {
       font-family: 'Lexend', sans-serif;
-      font-size: 46px;
-      font-weight: 800;
-      letter-spacing: -1.5px;
+      font-size: 48px;
+      font-weight: 900;
+      letter-spacing: -2px;
       line-height: 1.15;
       margin-bottom: 24px;
-      background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+      background: linear-gradient(180deg, #ffffff 40%, var(--accent-steel) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .subtitle {
-      font-size: 18px;
+      font-size: 19px;
       color: var(--text-muted);
-      max-width: 680px;
+      max-width: 720px;
       margin: 0 auto;
+      font-weight: 450;
     }
 
-    /* Metaphor section */
-    .metaphor {
+    /* Themed Concept Grid */
+    .concept-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 30px;
-      margin: 50px 0;
+      margin: 40px 0 80px 0;
     }
 
-    .metaphor-card {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
+    .concept-card {
+      background: var(--bg-panel);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-water);
+      border-radius: 20px;
       padding: 40px;
+      transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
     }
 
-    .metaphor-card::after {
+    .concept-card::before {
       content: '';
       position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 150px;
-      height: 150px;
-      background: radial-gradient(circle, rgba(212, 163, 115, 0.04) 0%, transparent 75%);
-      pointer-events: none;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-wood), var(--accent-water));
     }
 
-    .card-icon {
-      font-size: 32px;
+    .concept-card:hover {
+      border-color: var(--accent-wood);
+      box-shadow: 0 8px 30px rgba(168, 118, 62, 0.12);
+      transform: translateY(-3px);
+    }
+
+    .concept-icon {
+      font-size: 36px;
       margin-bottom: 20px;
     }
 
-    .metaphor-card h3 {
+    .concept-card h3 {
       font-family: 'Lexend', sans-serif;
       font-size: 22px;
-      font-weight: 700;
+      font-weight: 800;
       margin-bottom: 14px;
-      color: var(--accent-wood);
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #ffffff 60%, var(--accent-wood-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    .metaphor-card p {
+    .concept-card p {
       color: var(--text-muted);
       font-size: 15px;
+      line-height: 1.6;
     }
 
-    /* Architecture Flow */
-    .architecture {
-      padding: 70px 0;
-      border-top: 1px solid var(--border-color);
+    /* Dam Engineering Flow (Timeline) */
+    .timeline-section {
+      padding: 80px 0;
+      border-top: 1px solid var(--border-water);
+      position: relative;
     }
 
-    .arch-title {
+    .section-header {
       text-align: center;
-      margin-bottom: 50px;
+      margin-bottom: 60px;
     }
 
-    .arch-title h2 {
+    .section-header h2 {
       font-family: 'Lexend', sans-serif;
-      font-size: 30px;
-      font-weight: 800;
-      letter-spacing: -1px;
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: -1.2px;
     }
 
-    .steps-container {
+    .timeline {
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 32px;
       max-width: 800px;
       margin: 0 auto;
+      position: relative;
     }
 
-    .step-item {
+    /* Connecting vertical water line */
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 40px;
+      bottom: 40px;
+      left: 44px;
+      width: 3px;
+      background: linear-gradient(180deg, var(--accent-wood) 0%, var(--accent-water) 100%);
+      opacity: 0.3;
+    }
+
+    .timeline-item {
       display: flex;
       gap: 24px;
-      background: rgba(255, 255, 255, 0.01);
-      border: 1px solid var(--border-color);
-      border-radius: 14px;
-      padding: 28px;
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      background: rgba(16, 28, 38, 0.45);
+      border: 1px solid var(--border-wood);
+      border-radius: 18px;
+      padding: 30px;
+      z-index: 1;
+      backdrop-filter: blur(8px);
+      transition: all 0.25s ease;
     }
 
-    .step-item:hover {
-      transform: translateY(-2px);
-      border-color: rgba(212, 163, 115, 0.25);
+    .timeline-item:hover {
+      border-color: var(--accent-water);
+      background: rgba(16, 28, 38, 0.7);
     }
 
-    .step-num {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: rgba(212, 163, 115, 0.15);
-      border: 1.5px solid var(--accent-wood);
-      color: var(--accent-wood);
+    .timeline-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--bg-river-deep);
+      border: 2px solid var(--accent-wood);
+      color: var(--accent-wood-light);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 800;
-      font-size: 16px;
+      font-weight: 900;
+      font-size: 17px;
       flex-shrink: 0;
       font-family: 'Lexend', sans-serif;
+      box-shadow: 0 0 10px rgba(168, 118, 62, 0.2);
     }
 
-    .step-content h4 {
+    .timeline-item:hover .timeline-badge {
+      border-color: var(--accent-water);
+      color: var(--accent-water);
+      box-shadow: 0 0 12px rgba(0, 180, 216, 0.3);
+    }
+
+    .timeline-content h4 {
       font-family: 'Lexend', sans-serif;
-      font-size: 17px;
-      font-weight: 700;
+      font-size: 18px;
+      font-weight: 800;
       margin-bottom: 8px;
       color: var(--text-main);
     }
 
-    .step-content p {
+    .timeline-content p {
       color: var(--text-muted);
       font-size: 14.5px;
     }
@@ -282,60 +337,63 @@
     /* Specs Grid */
     .specs-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 30px;
-      padding: 60px 0;
-      border-top: 1px solid var(--border-color);
+      padding: 80px 0;
+      border-top: 1px solid var(--border-water);
     }
 
     .spec-card {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: 14px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-water);
+      border-radius: 16px;
       padding: 36px;
-      transition: all 0.2s ease;
+      transition: all 0.25s ease;
     }
 
     .spec-card:hover {
-      border-color: var(--accent-green-light);
-      box-shadow: 0 4px 20px rgba(45, 106, 79, 0.08);
+      border-color: var(--accent-water);
+      box-shadow: 0 0 20px var(--accent-water-glow);
     }
 
     .spec-icon {
-      font-size: 28px;
+      font-size: 26px;
       margin-bottom: 20px;
-      color: var(--accent-wood);
+      color: var(--accent-water);
       width: 48px;
       height: 48px;
-      background: rgba(212, 163, 115, 0.08);
-      border-radius: 10px;
+      background: rgba(0, 180, 216, 0.08);
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
+      border: 1px solid rgba(0, 180, 216, 0.2);
     }
 
     .spec-card h3 {
       font-family: 'Lexend', sans-serif;
       font-size: 19px;
-      font-weight: 700;
+      font-weight: 800;
       margin-bottom: 12px;
+      letter-spacing: -0.5px;
     }
 
     .spec-card p {
       color: var(--text-muted);
-      font-size: 14.5px;
-    }
-
-    footer {
-      padding: 40px 0;
-      border-top: 1px solid var(--border-color);
-      text-align: center;
-      color: var(--text-muted);
       font-size: 14px;
     }
 
+    footer {
+      padding: 50px 0;
+      border-top: 1px solid var(--border-water);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+      background: rgba(6, 12, 17, 0.5);
+    }
+
     @media (max-width: 768px) {
-      .metaphor {
+      .concept-grid {
         grid-template-columns: 1fr;
       }
       h1 {
@@ -344,10 +402,21 @@
       .subtitle {
         font-size: 16px;
       }
+      .timeline::before {
+        left: 30px;
+      }
+      .timeline-badge {
+        width: 36px;
+        height: 36px;
+        font-size: 15px;
+      }
     }
   </style>
 </head>
 <body>
+
+  <div class="river-flow-bg"></div>
+  <div class="river-stream"></div>
 
   <header>
     <div class="brand">
@@ -363,60 +432,60 @@
     
     <!-- Hero -->
     <section class="hero">
-      <div class="badge" id="heroBadge">Seguridad de Bóveda</div>
-      <h1 id="heroTitle">Ingeniería Natural, Seguridad Indestructible</h1>
+      <div class="badge" id="heroBadge">Ingeniería Criptográfica</div>
+      <h1 id="heroTitle">La Represa Digital de Conocimiento Cero</h1>
       <p class="subtitle" id="heroSubtitle">
-        Una bóveda de contraseñas y claves de Zero-Knowledge inspirada en la arquitectura de la naturaleza. Diseñada para mantener tus conexiones seguras y privadas.
+        Una bóveda blindada de contraseñas y llaves de conexión. Inspirada en la arquitectura hidráulica del castor, diseñada para contener y aislar flujos de datos sin comprometer tus llaves.
       </p>
     </section>
 
-    <!-- Metaphor Intro -->
-    <section class="metaphor">
-      <div class="metaphor-card">
-        <div class="card-icon">🦫</div>
-        <h3 id="metaCard1Title">El Castor: Arquitectura Segura</h3>
+    <!-- Concept Section -->
+    <section class="concept-grid">
+      <div class="concept-card">
+        <div class="concept-icon">🌊</div>
+        <h3 id="metaCard1Title">El Río & La Represa</h3>
         <p id="metaCard1Text">
-          Los castores son los ingenieros más minuciosos de la naturaleza. Construyen represas complejas, bloqueando amenazas exteriores con estructuras de madera entrelazadas. Kastor Vault replica esta filosofía de diseño robusto para asegurar tus accesos.
+          Los ríos fluyen de manera constante y salvaje. Los castores desvían y aíslan flujos de agua construyendo represas herméticas y modulares de madera entrelazada. Kastor Vault replica esta ingeniería natural para contener y estructurar tus endpoints de red.
         </p>
       </div>
-      <div class="metaphor-card">
-        <div class="card-icon">🔒</div>
-        <h3 id="metaCard2Title">Criptografía de Bóveda</h3>
+      <div class="concept-card">
+        <div class="concept-icon">🛡️</div>
+        <h3 id="metaCard2Title">Blindaje de Acero</h3>
         <p id="metaCard2Text">
-          Nuestra arquitectura de seguridad entrelaza tus datos con algoritmos avanzados. Las llaves nunca tocan el servidor; el descifrado ocurre en el lado del cliente, garantizando que tu información permanezca completamente privada.
+          Un compartimento de seguridad blindado donde tus credenciales se fragmentan localmente. El servidor nunca procesa ni conoce tus llaves maestras de descifrado, garantizando que el flujo de datos sea impenetrable ante cualquier filtración.
         </p>
       </div>
     </section>
 
-    <!-- Architecture & Flow -->
-    <section class="architecture">
-      <div class="arch-title">
-        <h2 id="archTitle">Flujo de Seguridad Zero-Knowledge</h2>
-        <p id="archSubtitle" style="color: var(--text-muted); margin-top: 8px;">Tus llaves maestras nunca cruzan la red.</p>
+    <!-- Timeline (Dam Construction Flow) -->
+    <section class="timeline-section">
+      <div class="section-header">
+        <h2 id="archTitle">Arquitectura e Ingeniería del Cierre</h2>
+        <p id="archSubtitle" style="color: var(--text-muted); margin-top: 8px;">Diseño de represa criptográfica paso a paso.</p>
       </div>
 
-      <div class="steps-container">
-        <div class="step-item">
-          <div class="step-num">1</div>
-          <div class="step-content">
-            <h4 id="step1Title">Derivación de Llave Local (KEK)</h4>
-            <p id="step1Text">Tu contraseña maestra se combina con un salt aleatorio local. Se deriva una Key Encryption Key (KEK) de 32 bytes usando PBKDF2-HMAC-SHA256 con 600,000 iteraciones en tu dispositivo.</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-badge">🪵</div>
+          <div class="timeline-content">
+            <h4 id="step1Title">1. El Tronco Base: KEK Local</h4>
+            <p id="step1Text">Tu contraseña maestra se procesa localmente combinándola con un salt único. Derivamos una Key Encryption Key (KEK) de 32 bytes usando PBKDF2-HMAC-SHA256 con 600,000 iteraciones directamente en tu navegador o cliente.</p>
           </div>
         </div>
 
-        <div class="step-item">
-          <div class="step-num">2</div>
-          <div class="step-content">
-            <h4 id="step2Title">Cifrado de Llave de Datos (DEK)</h4>
-            <p id="step2Text">Se genera una llave de datos de 256 bits (DEK) para encriptar los parámetros de tus conexiones. Esta llave se cifra con la KEK antes de enviarse de forma segura a la base de datos.</p>
+        <div class="timeline-item">
+          <div class="timeline-badge">🌿</div>
+          <div class="timeline-content">
+            <h4 id="step2Title">2. El Entramado Ciego: Envase de DEK</h4>
+            <p id="step2Text">Generamos una llave de datos (DEK) de 256 bits encargada de encriptar el vault. Esta DEK es envuelta (cifrada) con tu KEK antes de guardarse en el backend. El servidor almacena la llave envuelta sin posibilidad de descifrarla.</p>
           </div>
         </div>
 
-        <div class="step-item">
-          <div class="step-num">3</div>
-          <div class="step-content">
-            <h4 id="step3Title">Protección de Datos con AES-GCM</h4>
-            <p id="step3Text">Cada url y token se encripta de forma local en tu navegador con AES-256-GCM usando la DEK. El servidor sólo almacena paquetes cifrados ilegibles.</p>
+        <div class="timeline-item">
+          <div class="timeline-badge">💎</div>
+          <div class="timeline-content">
+            <h4 id="step3Title">3. La Represa Hermética: AES-GCM</h4>
+            <p id="step3Text">Cada slot de conexión de tu registro se cifra en el cliente mediante AES-256-GCM. La información viaja encriptada y el servidor web almacena únicamente bloques de datos opacos imposibles de violar.</p>
           </div>
         </div>
       </div>
@@ -425,82 +494,83 @@
     <!-- Specs Grid -->
     <section class="specs-grid">
       <div class="spec-card">
+        <div class="spec-icon">🔑</div>
+        <h3 id="spec1Title">Llaves Inmunes</h3>
+        <p id="spec1Text">La derivación pesada de PBKDF2 hace inviable cualquier ataque de fuerza bruta offline sobre tu base de datos, garantizando que tus contraseñas no se puedan crackear.</p>
+      </div>
+
+      <div class="spec-card">
         <div class="spec-icon">🪵</div>
-        <h3 id="spec1Title">Derivación Resistente</h3>
-        <p id="spec1Text">El uso de PBKDF2 de alta iteración imposibilita ataques de fuerza bruta en el servidor, garantizando seguridad absoluta frente a filtraciones de datos.</p>
+        <h3 id="spec2Title">26 Canales Modulares</h3>
+        <p id="spec2Text">Estructura tus parámetros en 26 slots alfabéticos (A-Z) aislados e independientes para segmentar tus entornos de producción y desarrollo de forma limpia.</p>
       </div>
 
       <div class="spec-card">
-        <div class="spec-icon">🌿</div>
-        <h3>26 Slots de Conexión</h3>
-        <p id="spec2Text">Administra hasta 26 slots independientes de parámetros de conexión (A-Z) para aislar tus entornos de desarrollo de forma limpia y organizada.</p>
-      </div>
-
-      <div class="spec-card">
-        <div class="spec-icon">🛡️</div>
-        <h3 id="spec3Title">Seguridad Compartida</h3>
-        <p id="spec3Text">El sistema utiliza estándares criptográficos universales, permitiendo una compatibilidad total entre portales web y aplicaciones móviles nativas.</p>
+        <div class="spec-icon">📱</div>
+        <h3 id="spec3Title">Estructura Unificada</h3>
+        <p id="spec3Text">Formato de cifrado estándar y portable, plenamente compatible con el portal de administración, el cliente web y la aplicación móvil nativa.</p>
       </div>
     </section>
 
   </main>
 
   <footer>
-    <p id="footerText">&copy; 2026 Kastor Vault. Desarrollado para entornos de seguridad privada y desarrollo.</p>
+    <p id="footerText">&copy; 2026 Kastor Vault. Diseñado bajo el principio de Zero-Knowledge y desarrollo descentralizado.</p>
   </footer>
 
-  <!-- Translation Switcher Script -->
   <script>
     let currentLang = 'es';
 
     const translations = {
       es: {
         langBtn: 'EN',
-        heroBadge: 'Seguridad de Bóveda',
-        heroTitle: 'Ingeniería Natural, Seguridad Indestructible',
-        heroSubtitle: 'Una bóveda de contraseñas y claves de Zero-Knowledge inspirada en la arquitectura de la naturaleza. Diseñada para mantener tus conexiones seguras y privadas.',
-        metaCard1Title: 'El Castor: Arquitectura Segura',
-        metaCard1Text: 'Los castores son los ingenieros más minuciosos de la naturaleza. Construyen represas complejas, bloqueando amenazas exteriores con estructuras de madera entrelazadas. Kastor Vault replica esta filosofía de diseño robusto para asegurar tus accesos.',
-        metaCard2Title: 'Criptografía de Bóveda',
-        metaCard2Text: 'Nuestra arquitectura de seguridad entrelaza tus datos con algoritmos avanzados. Las llaves nunca tocan el servidor; el descifrado ocurre en el lado del cliente, garantizando que tu información permanezca completamente privada.',
-        archTitle: 'Flujo de Seguridad Zero-Knowledge',
-        archSubtitle: 'Tus llaves maestras nunca cruzan la red.',
-        step1Title: 'Derivación de Llave Local (KEK)',
-        step1Text: 'Tu contraseña maestra se combina con un salt aleatorio local. Se deriva una Key Encryption Key (KEK) de 32 bytes usando PBKDF2-HMAC-SHA256 con 600,000 iteraciones en tu dispositivo.',
-        step2Title: 'Cifrado de Llave de Datos (DEK)',
-        step2Text: 'Se genera una llave de datos de 256 bits (DEK) para encriptar los parámetros de tus conexiones. Esta llave se cifra con la KEK antes de enviarse de forma segura a la base de datos.',
-        step3Title: 'Protección de Datos con AES-GCM',
-        step3Text: 'Cada url y token se encripta de forma local en tu navegador con AES-256-GCM usando la DEK. El servidor sólo almacena paquetes cifrados ilegibles.',
-        spec1Title: 'Derivación Resistente',
-        spec1Text: 'El uso de PBKDF2 de alta iteración imposibilita ataques de fuerza bruta en el servidor, garantizando seguridad absoluta frente a filtraciones de datos.',
-        spec2Text: 'Administra hasta 26 slots independientes de parámetros de conexión (A-Z) para aislar tus entornos de desarrollo de forma limpia y organizada.',
-        spec3Title: 'Seguridad Compartida',
-        spec3Text: 'El sistema utiliza estándares criptográficos universales, permitiendo una compatibilidad total entre portales web y aplicaciones móviles nativas.',
-        footerText: '© 2026 Kastor Vault. Desarrollado para entornos de seguridad privada y desarrollo.'
+        heroBadge: 'Ingeniería Criptográfica',
+        heroTitle: 'La Represa Digital de Conocimiento Cero',
+        heroSubtitle: 'Una bóveda blindada de contraseñas y llaves de conexión. Inspirada en la arquitectura hidráulica del castor, diseñada para contener y aislar flujos de datos sin comprometer tus llaves.',
+        metaCard1Title: 'El Río & La Represa',
+        metaCard1Text: 'Los ríos fluyen de manera constante y salvaje. Los castores desvían y aíslan flujos de agua construyendo represas herméticas y modulares de madera entrelazada. Kastor Vault replica esta ingeniería natural para contener y estructurar tus endpoints de red.',
+        metaCard2Title: 'Blindaje de Acero',
+        metaCard2Text: 'Un compartimento de seguridad blindado donde tus credenciales se fragmentan localmente. El servidor nunca procesa ni conoce tus llaves maestras de descifrado, garantizando que el flujo de datos sea impenetrable ante cualquier filtración.',
+        archTitle: 'Arquitectura e Ingeniería del Cierre',
+        archSubtitle: 'Diseño de represa criptográfica paso a paso.',
+        step1Title: '1. El Tronco Base: KEK Local',
+        step1Text: 'Tu contraseña maestra se procesa localmente combinándola con un salt único. Derivamos una Key Encryption Key (KEK) de 32 bytes usando PBKDF2-HMAC-SHA256 con 600,000 iteraciones directamente en tu navegador o cliente.',
+        step2Title: '2. El Entramado Ciego: Envase de DEK',
+        step2Text: 'Generamos una llave de datos (DEK) de 256 bits encargada de encriptar el vault. Esta DEK es envuelta (cifrada) con tu KEK antes de guardarse en el backend. El servidor almacena la llave envuelta sin posibilidad de descifrarla.',
+        step3Title: '3. La Represa Hermética: AES-GCM',
+        step3Text: 'Cada slot de conexión de tu registro se cifra en el cliente mediante AES-256-GCM. La información viaja encriptada y el servidor web almacena únicamente bloques de datos opacos imposibles de violar.',
+        spec1Title: 'Llaves Inmunes',
+        spec1Text: 'La derivación pesada de PBKDF2 hace inviable cualquier ataque de fuerza bruta offline sobre tu base de datos, garantizando que tus contraseñas no se puedan crackear.',
+        spec2Title: '26 Canales Modulares',
+        spec2Text: 'Estructura tus parámetros en 26 slots alfabéticos (A-Z) aislados e independientes para segmentar tus entornos de producción y desarrollo de forma limpia.',
+        spec3Title: 'Estructura Unificada',
+        spec3Text: 'Formato de cifrado estándar y portable, plenamente compatible con el portal de administración, el cliente web y la aplicación móvil nativa.',
+        footerText: '© 2026 Kastor Vault. Diseñado bajo el principio de Zero-Knowledge y desarrollo descentralizado.'
       },
       en: {
         langBtn: 'ES',
-        heroBadge: 'Vault Security',
-        heroTitle: 'Natural Engineering, Indestructible Security',
-        heroSubtitle: 'A zero-knowledge password and key vault inspired by nature\'s architecture. Designed to keep your connections secure and private.',
-        metaCard1Title: 'The Beaver: Secure Architecture',
-        metaCard1Text: 'Beavers are nature\'s finest engineers. They construct complex dams, blocking external threats with interlocking wooden logs. Kastor Vault replicates this robust design philosophy to secure your endpoints.',
-        metaCard2Title: 'Vault Cryptography',
-        metaCard2Text: 'Our security architecture wraps your data with advanced algorithms. Keys never touch the server; decryption happens on the client side, ensuring your information remains completely private.',
-        archTitle: 'Zero-Knowledge Security Flow',
-        archSubtitle: 'Your master keys never cross the network boundary.',
-        step1Title: 'Local Key Derivation (KEK)',
-        step1Text: 'Your master password is combined with a random local salt. A 32-byte Key Encryption Key (KEK) is derived using PBKDF2-HMAC-SHA256 with 600,000 iterations on your device.',
-        step2Title: 'Data Encryption Key (DEK) Wrapping',
-        step2Text: 'A random 256-bit Data Encryption Key (DEK) is generated to encrypt your connection parameters. This key is wrapped with the KEK before being safely sent to the database.',
-        step3Title: 'AES-GCM Payload Protection',
-        step3Text: 'Every URL and token is encrypted locally in your browser with AES-256-GCM using the DEK. The server only stores unreadable encrypted envelopes.',
-        spec1Title: 'Brute-Force Resistant',
-        spec1Text: 'High-iteration PBKDF2 key derivation makes brute force attacks impossible on the server, ensuring absolute safety even in the event of a database leak.',
-        spec2Text: 'Manage up to 26 independent connection parameter slots (A-Z) to cleanly isolate your development environments.',
-        spec3Title: 'Unified Protection',
-        spec3Text: 'The system uses universal cryptographic standards, allowing seamless compatibility between web portals and native mobile clients.',
-        footerText: '© 2026 Kastor Vault. Developed for private security and development environments.'
+        heroBadge: 'Cryptographic Engineering',
+        heroTitle: 'The Zero-Knowledge Digital Dam',
+        heroSubtitle: 'An armored vault for passwords and connection keys. Inspired by the beaver\'s hydraulic architecture, built to contain and isolate data flows without exposing your master keys.',
+        metaCard1Title: 'The River & The Dam',
+        metaCard1Text: 'Rivers flow constantly and wildly. Beavers divert and isolate water flows by building tight, modular dams of interlocking wood. Kastor Vault replicates this natural engineering to contain and structure your network endpoints.',
+        metaCard2Title: 'Steel-Armored Vault',
+        metaCard2Text: 'An armored security chamber where your credentials are locally fragmented. The server never processes or knows your decryption master keys, ensuring the data stream is impenetrable to any leak.',
+        archTitle: 'Architecture & Dam Engineering',
+        archSubtitle: 'Step-by-step cryptographic dam design.',
+        step1Title: '1. The Foundation Log: Local KEK',
+        step1Text: 'Your master password is processed locally by combining it with a unique salt. We derive a 32-byte Key Encryption Key (KEK) using PBKDF2-HMAC-SHA256 with 600,000 iterations directly in your browser or client.',
+        step2Title: '2. Interlocking Branches: Wrapped DEK',
+        step2Text: 'We generate a 256-bit data key (DEK) in charge of encrypting the vault. This DEK is wrapped (encrypted) with your KEK before being saved in the backend. The server stores the wrapped key with no way to decrypt it.',
+        step3Title: '3. The Hermetic Dam: AES-GCM',
+        step3Text: 'Each connection slot in your registry is encrypted on the client using AES-256-GCM. Information travels encrypted and the web server only stores opaque data blocks that cannot be violated.',
+        spec1Title: 'Immune Keys',
+        spec1Text: 'Heavy key derivation using PBKDF2 makes offline brute-force attacks on your database unfeasible, ensuring your passwords cannot be cracked.',
+        spec2Title: '26 Modular Channels',
+        spec2Text: 'Structure your parameters into 26 isolated and independent alphabetical slots (A-Z) to cleanly segment your production and development environments.',
+        spec3Title: 'Unified Structure',
+        spec3Text: 'Standardized and portable encryption format, fully compatible with the admin portal, web client, and native mobile application.',
+        footerText: '© 2026 Kastor Vault. Designed under the Zero-Knowledge principle and decentralized development.'
       }
     };
 
@@ -526,7 +596,7 @@
       document.getElementById('step3Text').innerText = dict.step3Text;
       document.getElementById('spec1Title').innerText = dict.spec1Title;
       document.getElementById('spec1Text').innerText = dict.spec1Text;
-      document.getElementById('spec2Text').innerText = dict.spec2Text;
+      document.getElementById('spec2Title').innerText = dict.spec2Title;
       document.getElementById('spec3Title').innerText = dict.spec3Title;
       document.getElementById('spec3Text').innerText = dict.spec3Text;
       document.getElementById('footerText').innerText = dict.footerText;
