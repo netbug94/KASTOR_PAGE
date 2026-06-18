@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kastor Vault - Cryptographic Vault & Connection Dam</title>
+  <title>Kastor Vault - Bóveda Criptográfica & Represa de Conexiones</title>
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -113,6 +113,32 @@
       background: linear-gradient(135deg, var(--text-main) 30%, var(--accent-water) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+    }
+
+    .lang-btn {
+      background: rgba(168, 118, 62, 0.1);
+      border: 1px solid var(--border-wood);
+      color: var(--accent-wood-light);
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-family: 'Lexend', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      letter-spacing: 0.5px;
+    }
+
+    .lang-btn:hover {
+      background: rgba(0, 180, 216, 0.12);
+      border-color: var(--accent-water);
+      color: var(--accent-water);
+      box-shadow: 0 0 15px rgba(0, 180, 216, 0.25);
+      transform: translateY(-1px);
+    }
+
+    .lang-btn:active {
+      transform: translateY(0);
     }
 
     .container {
@@ -402,16 +428,17 @@
       <div class="brand-logo"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
       <span>Kastor Vault</span>
     </div>
+    <button class="lang-btn" id="langBtn" onclick="toggleLanguage()">EN</button>
   </header>
 
   <main class="container">
     
     <!-- Hero -->
     <section class="hero">
-      <div class="badge" id="heroBadge">Cryptographic Engineering</div>
-      <h1 id="heroTitle">The Zero-Knowledge Digital Dam</h1>
+      <div class="badge" id="heroBadge">Ingeniería Criptográfica</div>
+      <h1 id="heroTitle">La Represa Digital de Conocimiento Cero</h1>
       <p class="subtitle" id="heroSubtitle">
-        An armored vault for your sensitive connection parameters. Inspired by the beaver's hydraulic architecture, built to seamlessly route and isolate data flows without ever exposing your core secrets to the cloud.
+        Una bóveda blindada para tus parámetros de conexión confidenciales. Inspirada en la arquitectura hidráulica del castor, diseñada para canalizar y aislar flujos de datos sin exponer jamás tus secretos esenciales a la nube.
       </p>
     </section>
 
@@ -419,16 +446,16 @@
     <section class="concept-grid">
       <div class="concept-card">
         <div class="concept-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l3-9 5 18 3-9h5"/></svg></div>
-        <h3 id="metaCard1Title">The River & The Dam</h3>
+        <h3 id="metaCard1Title">El Río & La Represa</h3>
         <p id="metaCard1Text">
-          Data flows constantly and wildly across the internet. Beavers divert and isolate water flows by building tight, modular dams. Kastor Vault replicates this natural engineering to safely contain, structure, and route your network endpoints.
+          Los datos fluyen de forma constante y descontrolada por internet. Los castores desvían y aíslan los flujos de agua construyendo represas herméticas y modulares. Kastor Vault replica esta ingeniería natural para contener, estructurar y canalizar tus endpoints de red de manera segura.
         </p>
       </div>
       <div class="concept-card">
         <div class="concept-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <h3 id="metaCard2Title">Steel-Armored Vault</h3>
+        <h3 id="metaCard2Title">Bóveda Blindada de Acero</h3>
         <p id="metaCard2Text">
-          A military-grade security chamber where your credentials are locally fragmented. Our servers act merely as blind custodians—they never process, observe, or retain your master decryption keys, ensuring absolute zero-knowledge architecture.
+          Una cámara de seguridad de nivel militar donde tus credenciales se fragmentan localmente. Nuestros servidores actúan meramente como custodios ciegos: nunca procesan, observan ni retienen tus llaves maestras de descifrado, garantizando una arquitectura de conocimiento cero absoluto.
         </p>
       </div>
     </section>
@@ -436,32 +463,32 @@
     <!-- Timeline (Dam Construction Flow) -->
     <section class="timeline-section">
       <div class="section-header">
-        <h2 id="archTitle">Architecture & Dam Engineering</h2>
-        <p id="archSubtitle" style="color: var(--text-muted); margin-top: 8px;">Step-by-step cryptographic dam design.</p>
+        <h2 id="archTitle">Arquitectura e Ingeniería de la Represa</h2>
+        <p id="archSubtitle" style="color: var(--text-muted); margin-top: 8px;">Diseño paso a paso de la represa criptográfica.</p>
       </div>
 
       <div class="timeline">
         <div class="timeline-item">
           <div class="timeline-badge"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
           <div class="timeline-content">
-            <h4 id="step1Title">1. The Foundation Log: Client-Side Derivation</h4>
-            <p id="step1Text">Your core secrets are processed locally inside your own device using advanced cryptographic hashing mechanisms. We derive an unbreakable master security anchor before any data ever leaves your screen.</p>
+            <h4 id="step1Title">1. El Tronco Base: Derivación Local</h4>
+            <p id="step1Text">Tus secretos esenciales se procesan localmente dentro de tu propio dispositivo utilizando mecanismos avanzados de hash criptográfico. Derivamos un anclaje de seguridad maestro inquebrantable antes de que cualquier dato salga de tu pantalla.</p>
           </div>
         </div>
 
         <div class="timeline-item">
           <div class="timeline-badge"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-7l-2-2"/><path d="M22 8v2c0 6-6 10-10 10S2 16 2 10V8l10-4 10 4Z"/><path d="M2 8l10 4 10-4"/></svg></div>
           <div class="timeline-content">
-            <h4 id="step2Title">2. Interlocking Branches: Dynamic Wrapping</h4>
-            <p id="step2Text">We generate a unique, session-based cryptographic payload in charge of encrypting your vault. This payload is tightly wrapped and secured locally, meaning the cloud only ever receives an impenetrable package it cannot unlock.</p>
+            <h4 id="step2Title">2. Ramas Entrelazadas: Envoltura Dinámica</h4>
+            <p id="step2Text">Generamos una carga criptográfica única por sesión encargada de cifrar tu bóveda. Esta carga se envuelve y asegura localmente de forma estricta, por lo que la nube solo recibe un paquete impenetrable que no puede desbloquear.</p>
           </div>
         </div>
 
         <div class="timeline-item">
           <div class="timeline-badge"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
           <div class="timeline-content">
-            <h4 id="step3Title">3. The Hermetic Dam: End-to-End Cipher</h4>
-            <p id="step3Text">Each individual connection channel in your registry is encrypted strictly on your device. Information travels through an end-to-end encrypted tunnel, and the backend stores only opaque, unbreakable data blocks.</p>
+            <h4 id="step3Title">3. La Represa Hermética: Cifrado Extremo a Extremo</h4>
+            <p id="step3Text">Cada canal de conexión individual en tu registro se cifra estrictamente en tu dispositivo. La información viaja a través de un túnel cifrado de extremo a extremo, y el backend almacena únicamente bloques de datos opacos e indescifrables.</p>
           </div>
         </div>
       </div>
@@ -471,28 +498,117 @@
     <section class="specs-grid">
       <div class="spec-card">
         <div class="spec-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></div>
-        <h3 id="spec1Title">Immune Defense</h3>
-        <p id="spec1Text">Intensive local key-stretching algorithms render offline brute-force attacks on our databases mathematically unfeasible, guaranteeing that your vault remains entirely uncrackable.</p>
+        <h3 id="spec1Title">Defensa Inmune</h3>
+        <p id="spec1Text">Los algoritmos intensivos de estiramiento de llaves locales hacen que los ataques de fuerza bruta offline contra nuestras bases de datos sean matemáticamente inviables, garantizando que tu bóveda permanezca completamente inquebrantable.</p>
       </div>
 
       <div class="spec-card">
         <div class="spec-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg></div>
-        <h3 id="spec2Title">26 Modular Channels</h3>
-        <p id="spec2Text">Structure your streaming parameters into 26 isolated and independent alphabetical slots to cleanly segment your production, staging, and personal environments without cross-contamination.</p>
+        <h3 id="spec2Title">26 Canales Modulares</h3>
+        <p id="spec2Text">Estructura tus parámetros de streaming en 26 slots alfabéticos aislados e independientes para segmentar de forma limpia tus entornos de producción, pruebas y personal sin contaminación cruzada.</p>
       </div>
 
       <div class="spec-card">
         <div class="spec-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="12" x="2" y="4" rx="2"/><rect width="6" height="10" x="16" y="10" rx="1"/><path d="M8 20h4"/><path d="M10 16v4"/></svg></div>
-        <h3 id="spec3Title">Unified Integration</h3>
-        <p id="spec3Text">A standardized and highly portable encryption format, seamlessly compatible across the administration portal, the web client, and the native mobile application.</p>
+        <h3 id="spec3Title">Integración Unificada</h3>
+        <p id="spec3Text">Un formato de cifrado estandarizado y altamente portable, compatible a la perfección entre el portal de administración, el cliente web y la aplicación móvil nativa.</p>
       </div>
     </section>
 
   </main>
 
   <footer>
-    <p id="footerText">&copy; 2026 Kastor Vault. Designed under the Zero-Knowledge principle and decentralized development.</p>
+    <p id="footerText">&copy; 2026 Kastor Vault. Diseñado bajo el principio de Conocimiento Cero y desarrollo descentralizado.</p>
   </footer>
 
+  <script>
+    let currentLang = 'es';
+
+    const translations = {
+      es: {
+        langBtn: 'EN',
+        pageTitle: 'Kastor Vault - Bóveda Criptográfica & Represa de Conexiones',
+        heroBadge: 'Ingeniería Criptográfica',
+        heroTitle: 'La Represa Digital de Conocimiento Cero',
+        heroSubtitle: 'Una bóveda blindada para tus parámetros de conexión confidenciales. Inspirada en la arquitectura hidráulica del castor, diseñada para canalizar y aislar flujos de datos sin exponer jamás tus secretos esenciales a la nube.',
+        metaCard1Title: 'El Río & La Represa',
+        metaCard1Text: 'Los datos fluyen de forma constante y descontrolada por internet. Los castores desvían y aíslan los flujos de agua construyendo represas herméticas y modulares. Kastor Vault replica esta ingeniería natural para contener, estructurar y canalizar tus endpoints de red de manera segura.',
+        metaCard2Title: 'Bóveda Blindada de Acero',
+        metaCard2Text: 'Una cámara de seguridad de nivel militar donde tus credenciales se fragmentan localmente. Nuestros servidores actúan meramente como custodios ciegos: nunca procesan, observan ni retienen tus llaves maestras de descifrado, garantizando una arquitectura de conocimiento cero absoluto.',
+        archTitle: 'Arquitectura e Ingeniería de la Represa',
+        archSubtitle: 'Diseño paso a paso de la represa criptográfica.',
+        step1Title: '1. El Tronco Base: Derivación Local',
+        step1Text: 'Tus secretos esenciales se procesan localmente dentro de tu propio dispositivo utilizando mecanismos avanzados de hash criptográfico. Derivamos un anclaje de seguridad maestro inquebrantable antes de que cualquier dato salga de tu pantalla.',
+        step2Title: '2. Ramas Entrelazadas: Envoltura Dinámica',
+        step2Text: 'Generamos una carga criptográfica única por sesión encargada de cifrar tu bóveda. Esta carga se envuelve y asegura localmente de forma estricta, por lo que la nube solo recibe un paquete impenetrable que no puede desbloquear.',
+        step3Title: '3. La Represa Hermética: Cifrado Extremo a Extremo',
+        step3Text: 'Cada canal de conexión individual en tu registro se cifra estrictamente en tu dispositivo. La información viaja a través de un túnel cifrado de extremo a extremo, y el backend almacena únicamente bloques de datos opacos e indescifrables.',
+        spec1Title: 'Defensa Inmune',
+        spec1Text: 'Los algoritmos intensivos de estiramiento de llaves locales hacen que los ataques de fuerza bruta offline contra nuestras bases de datos sean matemáticamente inviables, garantizando que tu bóveda permanezca completamente inquebrantable.',
+        spec2Title: '26 Canales Modulares',
+        spec2Text: 'Estructura tus parámetros de streaming en 26 slots alfabéticos aislados e independientes para segmentar de forma limpia tus entornos de producción, pruebas y personal sin contaminación cruzada.',
+        spec3Title: 'Integración Unificada',
+        spec3Text: 'Un formato de cifrado estandarizado y altamente portable, compatible a la perfección entre el portal de administración, el cliente web y la aplicación móvil nativa.',
+        footerText: '© 2026 Kastor Vault. Diseñado bajo el principio de Conocimiento Cero y desarrollo descentralizado.'
+      },
+      en: {
+        langBtn: 'ES',
+        pageTitle: 'Kastor Vault - Cryptographic Vault & Connection Dam',
+        heroBadge: 'Cryptographic Engineering',
+        heroTitle: 'The Zero-Knowledge Digital Dam',
+        heroSubtitle: 'An armored vault for your sensitive connection parameters. Inspired by the beaver\'s hydraulic architecture, built to seamlessly route and isolate data flows without ever exposing your core secrets to the cloud.',
+        metaCard1Title: 'The River & The Dam',
+        metaCard1Text: 'Data flows constantly and wildly across the internet. Beavers divert and isolate water flows by building tight, modular dams. Kastor Vault replicates this natural engineering to safely contain, structure, and route your network endpoints.',
+        metaCard2Title: 'Steel-Armored Vault',
+        metaCard2Text: 'A military-grade security chamber where your credentials are locally fragmented. Our servers act merely as blind custodians—they never process, observe, or retain your master decryption keys, ensuring absolute zero-knowledge architecture.',
+        archTitle: 'Architecture & Dam Engineering',
+        archSubtitle: 'Step-by-step cryptographic dam design.',
+        step1Title: '1. The Foundation Log: Client-Side Derivation',
+        step1Text: 'Your core secrets are processed locally inside your own device using advanced cryptographic hashing mechanisms. We derive an unbreakable master security anchor before any data ever leaves your screen.',
+        step2Title: '2. Interlocking Branches: Dynamic Wrapping',
+        step2Text: 'We generate a unique, session-based cryptographic payload in charge of encrypting your vault. This payload is tightly wrapped and secured locally, meaning the cloud only ever receives an impenetrable package it cannot unlock.',
+        step3Title: '3. The Hermetic Dam: End-to-End Cipher',
+        step3Text: 'Each individual connection channel in your registry is encrypted strictly on your device. Information travels through an end-to-end encrypted tunnel, and the backend stores only opaque, unbreakable data blocks.',
+        spec1Title: 'Immune Defense',
+        spec1Text: 'Intensive local key-stretching algorithms render offline brute-force attacks on our databases mathematically unfeasible, guaranteeing that your vault remains entirely uncrackable.',
+        spec2Title: '26 Modular Channels',
+        spec2Text: 'Structure your streaming parameters into 26 isolated and independent alphabetical slots to cleanly segment your production, staging, and personal environments without cross-contamination.',
+        spec3Title: 'Unified Integration',
+        spec3Text: 'A standardized and highly portable encryption format, seamlessly compatible across the administration portal, the web client, and the native mobile application.',
+        footerText: '© 2026 Kastor Vault. Designed under the Zero-Knowledge principle and decentralized development.'
+      }
+    };
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'es' ? 'en' : 'es';
+      document.documentElement.lang = currentLang;
+      const dict = translations[currentLang];
+      
+      document.title = dict.pageTitle;
+      document.getElementById('langBtn').innerText = dict.langBtn;
+      document.getElementById('heroBadge').innerText = dict.heroBadge;
+      document.getElementById('heroTitle').innerText = dict.heroTitle;
+      document.getElementById('heroSubtitle').innerText = dict.heroSubtitle;
+      document.getElementById('metaCard1Title').innerText = dict.metaCard1Title;
+      document.getElementById('metaCard1Text').innerText = dict.metaCard1Text;
+      document.getElementById('metaCard2Title').innerText = dict.metaCard2Title;
+      document.getElementById('metaCard2Text').innerText = dict.metaCard2Text;
+      document.getElementById('archTitle').innerText = dict.archTitle;
+      document.getElementById('archSubtitle').innerText = dict.archSubtitle;
+      document.getElementById('step1Title').innerText = dict.step1Title;
+      document.getElementById('step1Text').innerText = dict.step1Text;
+      document.getElementById('step2Title').innerText = dict.step2Title;
+      document.getElementById('step2Text').innerText = dict.step2Text;
+      document.getElementById('step3Title').innerText = dict.step3Title;
+      document.getElementById('step3Text').innerText = dict.step3Text;
+      document.getElementById('spec1Title').innerText = dict.spec1Title;
+      document.getElementById('spec1Text').innerText = dict.spec1Text;
+      document.getElementById('spec2Title').innerText = dict.spec2Title;
+      document.getElementById('spec2Text').innerText = dict.spec2Text;
+      document.getElementById('spec3Title').innerText = dict.spec3Title;
+      document.getElementById('spec3Text').innerText = dict.spec3Text;
+      document.getElementById('footerText').innerText = dict.footerText;
+    }
+  </script>
 </body>
 </html>
