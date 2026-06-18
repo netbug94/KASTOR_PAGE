@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kastor Vault - Zero-Knowledge Key & Connection Registry</title>
+  <style>
+    :root {
+      --bg-primary: #0a0e17;
+      --bg-secondary: #121824;
+      --accent-primary: #6366f1;
+      --accent-secondary: #a855f7;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --success: #10b981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 24px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      background: rgba(10, 14, 23, 0.7);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-icon {
+      font-size: 24px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 100px 0 80px 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 99px;
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      color: #818cf8;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    h1 {
+      font-size: 48px;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto 40px auto;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: white;
+      box-shadow: 0 4px 20px rgba(99, 102, 241, 0.25);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px rgba(99, 102, 241, 0.35);
+    }
+
+    /* Key Specs Grid */
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+      padding: 60px 0;
+    }
+
+    .spec-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 36px;
+      transition: border-color 0.2s ease;
+    }
+
+    .spec-card:hover {
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .spec-icon {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: var(--accent-primary);
+    }
+
+    h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .spec-card p {
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    /* Flow Chart */
+    .architecture {
+      padding: 80px 0;
+      border-top: 1px solid var(--border-color);
+      background: linear-gradient(180deg, var(--bg-primary) 0%, #080b12 100%);
+    }
+
+    .arch-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .arch-title h2 {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .steps-container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .step-item {
+      display: flex;
+      gap: 20px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--accent-primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .step-content h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .step-content p {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 36px;
+      }
+      .subtitle {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <span class="brand-icon">🛡️</span> Kastor Vault
+    </div>
+    <div>
+      <span style="color: var(--success); font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 6px;">
+        <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--success);"></span> Zero-Knowledge Verified
+      </span>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <!-- Hero -->
+    <section class="hero">
+      <div class="badge">Decentralized Cryptography</div>
+      <h1>Secure Client Connection Parameters</h1>
+      <p class="subtitle">
+        A lightweight, zero-knowledge URL and key vault. Derived client-side, encrypted locally, and stored securely.
+      </p>
+    </section>
+
+    <!-- Architecture & Flow -->
+    <section class="architecture">
+      <div class="arch-title">
+        <h2>Zero-Knowledge System Architecture</h2>
+        <p style="color: var(--text-muted); margin-top: 8px;">Your master keys never cross the network boundary.</p>
+      </div>
+
+      <div class="steps-container">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Client-Side KEK Derivation</h4>
+            <p>Your master password is combined with a random salt locally. A 32-byte Key Encryption Key (KEK) is derived using the PBKDF2-HMAC-SHA256 algorithm with 600,000 iterations.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>Data Encryption Key (DEK) Wrapping</h4>
+            <p>A random 256-bit Data Encryption Key (DEK) is generated to encrypt connection slots. The DEK itself is encrypted (wrapped) using the KEK before being sent to the database.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>AES-GCM Payload Protection</h4>
+            <p>Every individual slot URL and token parameter is encrypted locally using the DEK with AES-256-GCM. The server stores only raw ciphertext envelopes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Specs -->
+    <section class="specs-grid">
+      <div class="spec-card">
+        <div class="spec-icon">🔑</div>
+        <h3>Strong Key Derivation</h3>
+        <p>Utilizes PBKDF2 with SHA-256 and 600k iterations to derive key encryption keys, preventing brute force attacks even in the case of a complete database compromise.</p>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-icon">📦</div>
+        <h3>26 Isolated Slots (A-Z)</h3>
+        <p>Supports up to 26 independent parameter slots containing secure endpoint URLs and authorization keys, allowing modular management of environments.</p>
+      </div>
+
+      <div class="spec-card">
+        <div class="spec-icon">📱</div>
+        <h3>Cross-Platform Design</h3>
+        <p>Uses standardized cryptographic primitives, ensuring complete compatibility between desktop web portals and native mobile clients.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Kastor Vault. Developed for Private Secure Environments.</p>
+  </footer>
+
+</body>
+</html>
